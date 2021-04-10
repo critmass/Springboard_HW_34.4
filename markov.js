@@ -51,3 +51,7 @@ class MarkovMachine {
     return text
   }
 }
+
+module.exports = {
+  MarkovMachine: MarkovMachine
+}
