@@ -17,13 +17,37 @@ class MarkovMachine {
    *  {"the": ["cat", "hat"], "cat": ["in"], "in": ["the"], "hat": [null]} */
 
   makeChains() {
-    // TODO
+
+    this.chains = this.words.reduce( ( chains, word, index, words ) => {
+      if( chains[ word ] ){
+        chains[ word ].push( words[ index + 1 ] )
+      }
+      else{
+        chains[ word ] = [ words[ index + 1 ] ]
+      }
+      return chains
+    }, {})
   }
+
+  addLink
 
 
   /** return random text from chains */
 
   makeText(numWords = 100) {
-    // TODO
+
+    let word = this.words[Math.floor( (Math.random() * this.words.length ) )];
+    let text = ""
+
+    while( numWords && word ){
+      
+      --numWords
+      text = text.concat( word + " " )
+      word = this.chains[ word ][
+        Math.floor( (Math.random() * this.chains[ word ].length ) )
+      ]; 
+    }
+
+    return text
   }
 }
